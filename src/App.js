@@ -9,7 +9,6 @@ import Contactus from './components/ContactUs.js'
 import Aboutus from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
-
 import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom"
 
 
@@ -43,8 +42,6 @@ function App() {
           <Route path="/">
             <Home/>
           </Route>
-
-
         </Switch>
       </div>
     </Router>

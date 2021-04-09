@@ -26,13 +26,17 @@ function Header() {
                 <HeaderMission>
                     <Link to="/aboutus">
                         <HeaderAbout>
-                            <a>About Us</a>
+                            <a>About Us |</a>
                         </HeaderAbout>
                     </Link>
-
+                    <Link to="/Uploadpage">
+                        <HeaderAbout>
+                            <a> uploadPage |</a>
+                        </HeaderAbout>
+                    </Link>
                     <Link to="/contactus">
                         <HeaderContact>
-                            <a>Customer Support</a>
+                            <a> Customer Support</a>
                         </HeaderContact>
                     </Link>
                 </HeaderMission>

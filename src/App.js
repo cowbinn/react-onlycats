@@ -9,8 +9,10 @@ import Contactus from './components/ContactUs.js'
 import Aboutus from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
-import { BrowserRouter as Router,Switch, Route, Link } from "react-router-dom"
+import SignUp from "./components/SignUp"
+import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 
+import Uploadpage from './components/Uploadpage'
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
         <Switch>
           <Route path="/favorites">
             <Favorite/>
+          </Route>
+          <Route path="/Uploadpage">
+            <Uploadpage/>
           </Route>
           <Route path="/profile">
             <Profile/>
@@ -38,6 +43,9 @@ function App() {
           </Route>
           <Route path="/orderhistory">
             <OrderHistory/>
+          </Route>
+          <Route path="/signup">
+            <SignUp/>
           </Route>
           <Route path="/">
             <Home/>

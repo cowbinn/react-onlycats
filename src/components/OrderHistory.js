@@ -12,7 +12,7 @@ function OrderHistory() {
             <h1>Order History</h1>
             <a>{date}</a>
             <Picture>
-                <img src={"https://i.imgur.com/epMSRQH.png"}/>
+                <img alt="whoops" src={"https://i.imgur.com/epMSRQH.png"}/>
             </Picture>
             <a>Order Number: {ordernumber}</a>
             <a>Username: {username}</a>

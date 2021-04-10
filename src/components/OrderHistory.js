@@ -10,13 +10,13 @@ function OrderHistory() {
     return (
         <div>
             <h1>Order History</h1>
-            <a>{date}</a>
+            <a href = "#/">{date}</a>
             <Picture>
                 <img alt="whoops" src={"https://i.imgur.com/epMSRQH.png"}/>
             </Picture>
-            <a>Order Number: {ordernumber}</a>
-            <a>Username: {username}</a>
-            <a>Order Status: {orderstatus}</a>
+            <a href = "#/">Order Number: {ordernumber}</a>
+            <a href = "#/">Username: {username}</a>
+            <a href = "#/">Order Status: {orderstatus}</a>
         </div>
     )
 }

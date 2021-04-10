@@ -6,10 +6,10 @@ function SingleView() {
         <div>
             <h1>Single View Page</h1>
             <Picture>
-                <img src={"https://i.imgur.com/epMSRQH.png"}/>
+                <img alt = {"profilePic"} src={"https://i.imgur.com/epMSRQH.png"}/>
             </Picture>
             <ul>
-                <li><a>User</a></li>
+                <li><a href = "#/">User</a></li>
                 <li><button>Follow</button></li>
                 <li><button>Add to Cart</button></li>
             </ul>

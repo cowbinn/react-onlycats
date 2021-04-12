@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import {storage, firestore} from "./config";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import {storage, db} from "./config";
+
 
 function Home() {
     const [users, setUsers] = useState([])
     const [url, setURL] = useState("");
     const fetchUsers = async() => {
-        const response = db.collection('users');
+        const response = firestore.collection('users');
         const data = await response.get();
         data.docs.forEach(item=> {
             setUsers([...users, item.data()]);

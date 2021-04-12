@@ -1,23 +1,52 @@
+import { credentials } from "grpc";
 import React, { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import {auth, firestore} from "./config";
+
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const createUserByEmail= (event, email, password) => {
+ 
+  const createUserByEmail = (event) => {
+ 
     event.preventDefault();
+      const data={
+      email:email,
+      password:password,
+      displayName: displayName
+    }
+    
+    
+    auth.createUserWithEmailAndPassword(email, password).then(cred =>{
+      const userRef= firestore.collection('users2').doc(cred.user.uid).set(data);
+    })
+    
+    // const userRef= firestore.collection('users2').doc();
+    // const data={
+    //   email:email,
+    //   password:password,
+    //   displayName: displayName
+    // }
+    // userRef.set(data);
+ 
     setEmail("");
     setPassword("");
     setDisplayName("");
-  };
+    console.log("i send it there")
+  }
   const onChangeHandler = event => {
     const { name, value } = event.currentTarget;
     if (name === "userEmail") {
       setEmail(value);
+      //console.log(email)
     } else if (name === "userPassword") {
       setPassword(value);
+      //console.log(password +"here")
     } else if (name === "displayName") {
       setDisplayName(value);
+      //console.log(displayName+ "here3")
     }
   };
   return (
@@ -35,6 +64,7 @@ const SignUp = () => {
             placeholder="JohnDoe123"
             id="UserName"
             onChange={event => onChangeHandler(event)}
+            
           />
           <br/>
           <label >
@@ -61,11 +91,7 @@ const SignUp = () => {
             onChange={event => onChangeHandler(event)}
           />
           <br/>
-          <button
-            onClick={event => {
-              createUserByEmail(event, email, password);
-            }}
-          >
+          <button onClick={createUserByEmail}>
             Sign up
           </button>
         </form>
@@ -74,9 +100,11 @@ const SignUp = () => {
           <Link to="Signin">
             Sign in here
           </Link>
+          
         </h3>
       </div>
     </div>
+  
   );
 };
 export default SignUp;

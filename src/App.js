@@ -10,6 +10,7 @@ import Aboutus from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
 import SignUp from "./components/SignUp"
+import SignIn from "./components/Signin.js"
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 
 import Uploadpage from './components/Uploadpage'
@@ -47,6 +48,9 @@ function App() {
           <Route path="/signup">
             <SignUp/>
           </Route>
+          {/* <Route path="/signin">
+            <SignIn/>
+          </Route> */}
           <Route path="/">
             <Home/>
           </Route>

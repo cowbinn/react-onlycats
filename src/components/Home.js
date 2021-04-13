@@ -39,7 +39,7 @@ function Home() {
                     return(
                         <div className = "users-container">
                             <h1>{user.username}</h1>
-                            <Link to={`/singleview/${user.username}`}>
+                            <Link to={`/singleview/QmrbX9ugY2PneQRfcyWq`}>
                                 <Picture>
                                     <img src= {url} alt="profile" />
                                 </Picture>

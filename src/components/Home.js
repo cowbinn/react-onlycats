@@ -6,35 +6,36 @@ import { Link } from "react-router-dom";
 
 
 function Home() {
-    const [users, setUsers] = useState([])
-    const [url, setURL] = useState("");
-    const fetchUsers = async() => {
-        const response = firestore.collection('users');
-        const data = await response.get();
-        data.docs.forEach(item=> {
-            setUsers([...users, item.data()]);
-        })
-    }
+    const [users, setUsers] = useState([]);
+    const [urls, setURLs] = useState([]);
+    const [fin, setFin] = useState(false);
 
+    let usersList = [];
     useEffect(() => {
+        const fetchUsers = async() => {
+            const response = firestore.collection('users');
+            const data = await response.get();
+            data.docs.forEach(item=> {
+                setUsers([...users, item.data()]);
+                storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
+                    setURLs([...urls, url]);
+                    setFin(true);
+                });
+            })
+        }
         fetchUsers();
       }, [])
       
       // Method for finding users.
       //console.log(users.find(username => "Michael"));
-      
-      async function getImg(user) {
-        var str = "images/" + user.profilePicture;
-        storage.ref().child(str).getDownloadURL().then((url) => {
-            setURL(url);
-          });
+      if(fin) {
+        var wis = (fin ? users[0].id : null);
+        console.log(wis);
       }
-
       return (
         <div>
-            {
+            {/* {fin ? (
                 users && users.map(user=> {
-                    getImg(user);
                     //<li> here gets rid of the returns, but would fix a harmless error on console.
                     return(
                         <div className = "users-container">
@@ -47,7 +48,7 @@ function Home() {
                         </div>
                     )
                 })
-            }
+            ) : (null) }  */}
         </div>
     );
 }

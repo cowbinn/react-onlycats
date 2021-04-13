@@ -11,15 +11,21 @@ const SignUp = () => {
   const createUserByEmail = (event) => {
  
     event.preventDefault();
-      const data={
-      email:email,
-      password:password,
-      displayName: displayName
+      const data = {
+        email:email,
+        password:password,
+        username: displayName,
+        description: 'default',
+        favorites: [],
+        img: [],
+        profilePicture: 'default.png'
     }
     
-    
     auth.createUserWithEmailAndPassword(email, password).then(cred =>{
-      const userRef= firestore.collection('users2').doc(cred.user.uid).set(data);
+      const userRef= firestore.collection('users').doc(cred.user.uid).set(data);
+      var setWithMerge = firestore.collection('users').doc(cred.user.uid).set({
+        uid: cred.user.uid
+      }, { merge: true });
     })
     
     // const userRef= firestore.collection('users2').doc();

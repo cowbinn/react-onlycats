@@ -6,47 +6,47 @@ import { Link } from "react-router-dom";
 
 
 function Home() {
-    const [users, setUsers] = useState([])
-    const [url, setURL] = useState("");
-    const fetchUsers = async() => {
-        const response = firestore.collection('users');
-        const data = await response.get();
-        data.docs.forEach(item=> {
-            setUsers([...users, item.data()]);
-        })
-    }
+    const [users, setUsers] = useState([]);
+    const [urls, setURLs] = useState([]);
+    // counter based on num of total items.
+    let [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
+        const fetchUsers = async() => {
+            const response = firestore.collection('users').limit(10);
+            const data = await response.get();
+            data.docs.forEach(item=> {
+                storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
+                    setUsers(users => [...users, item.data()]);
+                    setURLs(urls => [...urls, url]);
+                    setLoading(false);
+                });
+            });
+        }
         fetchUsers();
       }, [])
-      
-      // Method for finding users.
-      //console.log(users.find(username => "Michael"));
-      
-      async function getImg(user) {
-        var str = "images/" + user.profilePicture;
-        storage.ref().child(str).getDownloadURL().then((url) => {
-            setURL(url);
-          });
-      }
-
+      // {homes.map(home => <div>{home.name}</div>)}
+    const usersList = users.map((data, index)=>{
+        return(
+            <div key = {index}>
+                <Link to={`/singleview/${data.uid}`}>
+                    <Picture>
+                        <img src= {urls[index]} alt="profile" />
+                    </Picture>
+                </Link>
+                <h2>{data.username}</h2>
+            </div>
+        )
+    });
       return (
         <div>
-            {
-                users && users.map(user=> {
-                    getImg(user);
-                    //<li> here gets rid of the returns, but would fix a harmless error on console.
-                    return(
-                        <div className = "users-container">
-                            <h1>{user.username}</h1>
-                            <Link to={`/singleview/${user.username}`}>
-                                <Picture>
-                                    <img src= {url} alt="profile" />
-                                </Picture>
-                            </Link>
-                        </div>
-                    )
-                })
+            { loading ? (<div>Loading...</div>) : 
+                (
+                    <React.Fragment>
+                        {usersList}
+                    </React.Fragment>
+                )
             }
         </div>
     );
@@ -56,6 +56,6 @@ export default Home
 
 const Picture = styled.div`
     img {
-        width: 500px
+        width: 140px
     }
 `

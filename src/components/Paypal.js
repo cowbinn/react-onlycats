@@ -1,16 +1,18 @@
 import React from "react";
-import ReactDOM from "react-dom"
+import ReactDOM from "react-dom";
 import paypal from 'paypal-checkout';
-
+import { auth } from './config.js';
 const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
 
 class YourComponent extends React.Component {
+  currUser = auth.currentUser();
+
   createOrder(data, actions) {
     return actions.order.create({
       purchase_units: [
         {
           amount: {
-            value: "0.01",
+            value: "5.00",
           },
         },
       ],
@@ -18,6 +20,7 @@ class YourComponent extends React.Component {
   }
 
   onApprove(data, actions) {
+    /* add looked at user to current user's favorites list */
     return actions.order.capture();
   }
 

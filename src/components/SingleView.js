@@ -1,20 +1,48 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import styled from "styled-components"
-
+import { storage, firestore } from "./config";
 function SingleView() {
-    return (
+    let id = window.location.pathname.split("/").pop();
+
+    const [user, setUser] = useState();
+    const [url, setURL] = useState("");
+    const [fin, setFin] = useState(false);
+    useEffect(() => {
+        const fetchUsers = async() => {
+            const response = firestore.collection('users').doc(id);
+            response.get().then(doc => {
+                setUser(doc.data());
+                storage.ref('images/')
+                    .child(doc.data().profilePicture)
+                    .getDownloadURL().then((url) => {
+                        setURL(url);
+                        setFin(true);
+                        return url;
+                    });
+            });
+        }
+        fetchUsers();
+    }, []);
+
+    return(
         <div>
-            <h1>Single View Page</h1>
-            <Picture>
-                <img alt = {"profilePic"} src={"https://i.imgur.com/epMSRQH.png"}/>
-            </Picture>
-            <ul>
-                <li><a href = "#/">User</a></li>
-                <li><button>Follow</button></li>
-                <li><button>Add to Cart</button></li>
-            </ul>
+        {fin? (
+            <React.Fragment>
+                <h1>{user.username}</h1>
+                <h2>{user.description}</h2>
+                <Picture>
+                    <img src = {url} alt = "Profile" />
+                </Picture>
+{/*        follow button that links to paypal && passes in id param          */}
+                <Link to={`payment.html?id=${id}`}>
+                    AAAAAAAAAAA
+                </Link>
+            </React.Fragment>
+        ) : (null) }
         </div>
-    )
+
+    );
 }
 
 export default SingleView

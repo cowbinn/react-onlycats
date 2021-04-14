@@ -8,47 +8,46 @@ import { Link } from "react-router-dom";
 function Home() {
     const [users, setUsers] = useState([]);
     const [urls, setURLs] = useState([]);
-    const [fin, setFin] = useState(false);
+    // counter based on num of total items.
+    let [loading, setLoading] = useState(false);
 
-    let usersList = [];
     useEffect(() => {
+        setLoading(true);
         const fetchUsers = async() => {
-            const response = firestore.collection('users');
+            const response = firestore.collection('users').limit(10);
             const data = await response.get();
             data.docs.forEach(item=> {
-                setUsers([...users, item.data()]);
                 storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
-                    setURLs([...urls, url]);
-                    setFin(true);
+                    setUsers(users => [...users, item.data()]);
+                    setURLs(urls => [...urls, url]);
+                    setLoading(false);
                 });
-            })
+            });
         }
         fetchUsers();
       }, [])
-      
-      // Method for finding users.
-      //console.log(users.find(username => "Michael"));
-      if(fin) {
-        var wis = (fin ? users[0].id : null);
-        console.log(wis);
-      }
+      // {homes.map(home => <div>{home.name}</div>)}
+    const usersList = users.map((data, index)=>{
+        return(
+            <div key = {index}>
+                <Link to={`/singleview/${data.uid}`}>
+                    <Picture>
+                        <img src= {urls[index]} alt="profile" />
+                    </Picture>
+                </Link>
+                <h2>{data.username}</h2>
+            </div>
+        )
+    });
       return (
         <div>
-            {/* {fin ? (
-                users && users.map(user=> {
-                    //<li> here gets rid of the returns, but would fix a harmless error on console.
-                    return(
-                        <div className = "users-container">
-                            <h1>{user.username}</h1>
-                            <Link to={`/singleview/QmrbX9ugY2PneQRfcyWq`}>
-                                <Picture>
-                                    <img src= {url} alt="profile" />
-                                </Picture>
-                            </Link>
-                        </div>
-                    )
-                })
-            ) : (null) }  */}
+            { loading ? (<div>Loading...</div>) : 
+                (
+                    <React.Fragment>
+                        {usersList}
+                    </React.Fragment>
+                )
+            }
         </div>
     );
 }
@@ -57,6 +56,6 @@ export default Home
 
 const Picture = styled.div`
     img {
-        width: 500px
+        width: 140px
     }
 `

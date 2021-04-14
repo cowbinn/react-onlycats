@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import styled from "styled-components"
-import {auth, storage, getUser, firestore} from "./config";
-
-const DEFAULT_IMAGE_PATH = 'images/default.png';
+import { storage, firestore } from "./config";
 function SingleView() {
     let id = window.location.pathname.split("/").pop();
 
@@ -26,9 +25,6 @@ function SingleView() {
         fetchUsers();
     }, []);
 
-    console.log(user);
-    console.log(url);
-
     return(
         <div>
         {fin? (
@@ -38,6 +34,10 @@ function SingleView() {
                 <Picture>
                     <img src = {url} alt = "Profile" />
                 </Picture>
+{/*        follow button that links to paypal && passes in id param          */}
+                <Link to={`payment.html?id=${id}`}>
+                    AAAAAAAAAAA
+                </Link>
             </React.Fragment>
         ) : (null) }
         </div>

@@ -21,39 +21,17 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/favorites">
-            <Favorite/>
-          </Route>
-          <Route path="/Uploadpage">
-            <Uploadpage/>
-          </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
-          <Route path="/cart">
-            <Cart/>
-          </Route>
-          <Route path="/contactus">
-            <Contactus/>
-          </Route>
-          <Route path="/aboutus">
-            <Aboutus/>
-          </Route>
-          <Route path="/singleview">
-            <SingleView/>
-          </Route>
-          <Route path="/orderhistory">
-            <OrderHistory/>
-          </Route>
-          <Route path="/signup">
-            <SignUp/>
-          </Route>
-          {/* <Route path="/signin">
-            <SignIn/>
-          </Route> */}
-          <Route path="/">
-            <Home/>
-          </Route>
+          <Route path="/favorites" component={Favorite} />
+          <Route path="/Uploadpage" component={Uploadpage} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/contactus" component={Contactus} />
+          <Route path="/aboutus" component={Aboutus} />
+          <Route path="/singleview" component={SingleView} />
+          <Route path="/orderhistory" component={OrderHistory} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/"  component={Home} />
         </Switch>
       </div>
     </Router>

@@ -11,10 +11,11 @@ function SingleView() {
     useEffect(() => {
         const fetchUsers = async() => {
             const response = firestore.collection('users').doc(id);
-            response.get().then(doc => {
-                setUser(doc.data());
+            await response.get().then(doc => {
+                let vari = doc.data();
+                setUser(vari);
                 storage.ref('images/')
-                    .child(doc.data().profilePicture)
+                    .child(vari.profilePicture)
                     .getDownloadURL().then((url) => {
                         setURL(url);
                         setFin(true);
@@ -35,7 +36,7 @@ function SingleView() {
                     <img src = {url} alt = "Profile" />
                 </Picture>
 {/*        follow button that links to paypal && passes in id param          */}
-                <Link to={`payment.html?id=${id}`}>
+                <Link to={`/cart/${id}`}>
                     AAAAAAAAAAA
                 </Link>
             </React.Fragment>

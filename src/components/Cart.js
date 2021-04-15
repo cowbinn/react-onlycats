@@ -1,5 +1,5 @@
 import React from 'react'
-import PayPal from './PayPal.js'
+import PayPal from './Paypal.js'
 
 function Cart() {
     return (

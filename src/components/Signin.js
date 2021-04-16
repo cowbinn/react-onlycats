@@ -4,7 +4,35 @@ import {auth, firestore} from "./config";
 
 
 const Signin = () => {
-    return (
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [displayName, setDisplayName] = useState("");
+  
+  const loginHandle = (e)=> {
+    e.preventDefault();
+    auth.signInWithEmailAndPassword(email, password).then ((e)=>{console.log("login successful");}).catch((error)=>{
+      console.log(error);
+    });
+  }
+  const onChangeHandler = event => {
+    const { name, value } = event.currentTarget;
+    if (name === "userEmail") {
+      setEmail(value);
+    } else if (name === "userPassword") {
+      setPassword(value);
+    } 
+  };
+  console.log (email, password)
+  const logouthandle = event =>{
+    auth.signOut()
+  }
+  
+  
+  
+  
+  
+  
+  return (
         <div >
       <h1 >Log In</h1>
       <div>
@@ -18,7 +46,7 @@ const Signin = () => {
             
             placeholder="Enter Email"
             id="userEmail"
-            /*onChange={event => onChangeHandler(event)}*/
+            onChange={event => onChangeHandler(event)}
           />
           <br/>
           <label>
@@ -30,11 +58,14 @@ const Signin = () => {
             
             placeholder="Enter Password"
             id="userPassword"
-            /*onChange={event => onChangeHandler(event)}*/
+            onChange={event => onChangeHandler(event)}
           />
           <br/>
-          <button >
+          <button onClick={loginHandle}>
             Log in
+          </button>
+          <button onClick={logouthandle}>
+            logout
           </button>
         </form>
         <h3 >

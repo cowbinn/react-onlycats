@@ -3,13 +3,14 @@ import './App.css'
 import Header from './components/Header.js'
 import Favorite from './components/Favorite.js'
 import Profile from './components/Profile.js'
-import Cart from './components/Cart.js'
+import Cart from './components/Paypal.js'
 import Home from './components/Home.js'
 import Contactus from './components/ContactUs.js'
 import Aboutus from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
 import SignUp from "./components/SignUp"
+import SignIn from "./components/Signin.js"
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 
 import Uploadpage from './components/Uploadpage'
@@ -20,36 +21,17 @@ function App() {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/favorites">
-            <Favorite/>
-          </Route>
-          <Route path="/Uploadpage">
-            <Uploadpage/>
-          </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
-          <Route path="/cart">
-            <Cart/>
-          </Route>
-          <Route path="/contactus">
-            <Contactus/>
-          </Route>
-          <Route path="/aboutus">
-            <Aboutus/>
-          </Route>
-          <Route path="/singleview">
-            <SingleView/>
-          </Route>
-          <Route path="/orderhistory">
-            <OrderHistory/>
-          </Route>
-          <Route path="/signup">
-            <SignUp/>
-          </Route>
-          <Route path="/">
-            <Home/>
-          </Route>
+          <Route path="/favorites" component={Favorite} />
+          <Route path="/Uploadpage" component={Uploadpage} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/contactus" component={Contactus} />
+          <Route path="/aboutus" component={Aboutus} />
+          <Route path="/singleview" component={SingleView} />
+          <Route path="/orderhistory" component={OrderHistory} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/signin" component={SignIn}/>
+          <Route path="/"  component={Home} />
         </Switch>
       </div>
     </Router>

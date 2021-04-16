@@ -1,8 +1,7 @@
-import { credentials } from "grpc";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {auth, firestore} from "./config";
-
+import './signup.css'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -12,25 +11,23 @@ const SignUp = () => {
   const createUserByEmail = (event) => {
  
     event.preventDefault();
-      const data={
-      email:email,
-      password:password,
-      displayName: displayName
+      const data = {
+        email:email,
+        password:password,
+        username: displayName,
+        description: 'default',
+        favorites: [],
+        img: [],
+        profilePicture: 'default.png'
     }
     
-    
     auth.createUserWithEmailAndPassword(email, password).then(cred =>{
-      const userRef= firestore.collection('users2').doc(cred.user.uid).set(data);
+      const userRef= firestore.collection('users').doc(cred.user.uid).set(data);
+      var setWithMerge = firestore.collection('users').doc(cred.user.uid).set({
+        uid: cred.user.uid
+      }, { merge: true });
     })
-    
-    // const userRef= firestore.collection('users2').doc();
-    // const data={
-    //   email:email,
-    //   password:password,
-    //   displayName: displayName
-    // }
-    // userRef.set(data);
- 
+
     setEmail("");
     setPassword("");
     setDisplayName("");
@@ -40,61 +37,74 @@ const SignUp = () => {
     const { name, value } = event.currentTarget;
     if (name === "userEmail") {
       setEmail(value);
-      //console.log(email)
     } else if (name === "userPassword") {
       setPassword(value);
-      //console.log(password +"here")
     } else if (name === "displayName") {
       setDisplayName(value);
-      //console.log(displayName+ "here3")
     }
   };
   return (
-    <div >
-      <h1 >Sign Up</h1>
+    <div className="signup-container">
+      <div id="signup-label"><h1>Sign Up</h1></div>
       <div>
-        <form className="">
-          <label>
-            UserName:
-          </label>
-          <input
-            type="text"
-            name="displayName"
-            value={displayName}
-            placeholder="JohnDoe123"
-            id="UserName"
-            onChange={event => onChangeHandler(event)}
+        <div id="signup-field">
+          <form className="">
+            <div id="signup-field">
+              <label>
+                UserName:
+              </label>
+              <br/>
+              <input
+                type="text"
+                name="displayName"
+                value={displayName}
+                placeholder="Enter Username"
+                id="UserName"
+                onChange={event => onChangeHandler(event)}
+              
+              />
+            </div>
+            <br/>
+            <div id="signup-field">
+              <label >
+                Email:
+              </label>
+              <br/>
+              <input type="email" name="userEmail"
+                value={email}
+                placeholder="Enter Email"
+                id="userEmail"
+                onChange={event => onChangeHandler(event)}
+              />
+            </div>
             
-          />
+            <br/>
+            <div id="signup-field">
+              <label>
+                Password:
+              </label>
+              <br/>
+              <input
+                className="test"
+                type="password"
+                name="userPassword"
+                value={password}
+                placeholder="Enter Password"
+                id="userPassword"
+                onChange={event => onChangeHandler(event)}
+              />
+            </div>
+            
+          
           <br/>
-          <label >
-            Email:
-          </label>
-          <input
-            type="email"
-            name="userEmail"
-            value={email}
-            placeholder="JohnDoe123@gmail.com"
-            id="userEmail"
-            onChange={event => onChangeHandler(event)}
-          />
-          <br/>
-          <label>
-            Password:
-          </label>
-          <input
-            type="password"
-            name="userPassword"
-            value={password}
-            placeholder="Your Password"
-            id="userPassword"
-            onChange={event => onChangeHandler(event)}
-          />
-          <br/>
-          <button onClick={createUserByEmail}>
-            Sign up
-          </button>
-        </form>
+            <div id="signup-button">
+              <button onClick={createUserByEmail}>
+                Sign up
+              </button>
+            </div>
+          </form>
+          
+        </div>
         <h3 >
           Already have an account?{" "}
           <Link to="Signin">

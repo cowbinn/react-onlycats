@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from "react-router-dom"
+import './header.css'
 
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -71,7 +72,7 @@ export default Header
 
 const HeaderContainer = styled.div`
     font-size: 20px;
-    height: 60px;
+    height: 100px;
     background-color: yellow;
     display: flex;
     align-items: center;

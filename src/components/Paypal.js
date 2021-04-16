@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom"
-import paypal from 'paypal-checkout';
+import styled from 'styled-components';
 
-const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
+const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
-class YourComponent extends React.Component {
-  createOrder(data, actions) {
+function PayPal() {
+  const createOrder = (data, actions) =>{
     return actions.order.create({
       purchase_units: [
         {
@@ -15,18 +15,27 @@ class YourComponent extends React.Component {
         },
       ],
     });
-  }
+  };
 
-  onApprove(data, actions) {
+  const onApprove = (data, actions) => {
     return actions.order.capture();
-  }
+  };
 
-  render() {
-    return (
+  return (
+    <PayPalBlock>
       <PayPalButton
-        createOrder={(data, actions) => this.createOrder(data, actions)}
-        onApprove={(data, actions) => this.onApprove(data, actions)}
+        createOrder={(data, actions) => createOrder(data, actions)}
+        onApprove={(data, actions) => onApprove(data, actions)}
       />
-    );
-  }
+    </PayPalBlock>
+  );
 }
+
+export default PayPal;
+
+const PayPalBlock = styled.div`
+  background-color: gray;
+  display: grid;
+  margin: 100px 10px;
+  place-items: center;
+`

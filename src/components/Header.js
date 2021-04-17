@@ -38,11 +38,6 @@ function Header() {
                             <a href = "#/">About Us |</a>
                         </HeaderAbout>
                     </Link>
-                    <Link to="/Uploadpage">
-                        <HeaderAbout>
-                            <a href = "#/"> Upload Page |</a>
-                        </HeaderAbout>
-                    </Link>
                     <Link to="/contactus">
                         <HeaderContact>
                             <a href = "#/"> Customer Support</a>

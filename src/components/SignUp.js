@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {auth, firestore} from "./config";
 import './signup.css'
+
+import styled from 'styled-components';
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const history = useHistory();
  
   const createUserByEmail = (event) => {
  
@@ -32,6 +35,7 @@ const SignUp = () => {
     setPassword("");
     setDisplayName("");
     console.log("i send it there")
+    history.push("/signin")
   }
   const onChangeHandler = event => {
     const { name, value } = event.currentTarget;
@@ -43,8 +47,9 @@ const SignUp = () => {
       setDisplayName(value);
     }
   };
+  
   return (
-    <div className="signup-container">
+    <SignUpContainer>
       <div id="signup-label"><h1>Sign Up</h1></div>
       <div>
         <div id="signup-field">
@@ -113,8 +118,11 @@ const SignUp = () => {
           
         </h3>
       </div>
-    </div>
-  
+    </SignUpContainer>
   );
 };
 export default SignUp;
+
+const SignUpContainer = styled.div`
+  
+`

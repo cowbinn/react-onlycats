@@ -1,41 +1,56 @@
 import React from 'react';
 import styled from 'styled-components';
-import {storage, firestore} from "./config";
+import firebase, { storage, firestore } from "./config";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-
 function Home() {
+    var currUserID;
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            currUserID = firebase.auth().currentUser.uid;
+        } else {
+          // No user is signed in.
+          // uh idk what to do here tbh
+        }
+    });
+
     const [users, setUsers] = useState([]);
     const [urls, setURLs] = useState([]);
     // counter based on num of total items.
     let [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        let isMounted = true
         setLoading(true);
         const fetchUsers = async() => {
-            const response = firestore.collection('users').limit(10);
+            const response = firestore.collection('users');
             const data = await response.get();
             data.docs.forEach(item=> {
-                storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
-                    setUsers(users => [...users, item.data()]);
-                    setURLs(urls => [...urls, url]);
-                    setLoading(false);
-                });
+                if(currUserID === item.data().username) {}
+                else {
+                    storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
+                        setUsers(users => [...users, item.data()]);
+                        setURLs(urls => [...urls, url]);
+                        setLoading(false);
+                    });
+                }
             });
         }
         fetchUsers();
+        return () => (isMounted = false)
       }, [])
       // {homes.map(home => <div>{home.name}</div>)}
     const usersList = users.map((data, index)=>{
         return(
             <div key = {index}>
-                <Link to={`/singleview/${data.uid}`}>
-                    <Picture>
+                <Picture>
+                    <Link to={`/singleview/${data.uid}`}>
                         <img src= {urls[index]} alt="profile" />
-                    </Picture>
-                </Link>
+                    </Link>
+                </Picture>
                 <h2>{data.username}</h2>
+                <hr />
             </div>
         )
     });

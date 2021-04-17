@@ -6,7 +6,7 @@ import './header.css'
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 function Header() {
     return (
@@ -55,12 +55,6 @@ function Header() {
                         </HeaderOptionsProfile>
                     </Link>
 
-                    <Link to="/cart">
-                        <HeaderOptionsCart>
-                            <ShoppingCartIcon/>
-                        </HeaderOptionsCart>
-                    </Link>
-
                 </HeaderOptions>
 
             </HeaderContainer>
@@ -73,7 +67,7 @@ export default Header
 const HeaderContainer = styled.div`
     font-size: 20px;
     height: 100px;
-    background-color: yellow;
+    background-color: #EEDBD7;
     display: flex;
     align-items: center;
     color: black;
@@ -135,9 +129,5 @@ const HeaderOptionsFavorite = styled.div`
 `
 
 const HeaderOptionsProfile = styled.div`
-
-`
-
-const HeaderOptionsCart = styled.div`
 
 `

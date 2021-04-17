@@ -1,23 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from "react-router-dom"
+import { Link, useHistory} from "react-router-dom"
 import './header.css'
 
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-// import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+//import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+import {auth} from "./config";
 
 function Header() {
+    const history = useHistory()
+    const logouthandle = event =>{
+        auth.signOut()
+        history.push("/signin")
+      }
+
     return (
         <div>
             <HeaderContainer>
                 <HeaderLogo>
-                    <Link to="/">                    
-                        <a href = "#/">OnlyCats</a>                  
+                    <Link to="/">
+                        <a href = "#/">OnlyCats</a>
                     </Link>
                 </HeaderLogo>
-                
+
                 <HeaderSearch>
                     <HeaderSearchInput type='text'></HeaderSearchInput>
                     <HeaderSearchIcon>
@@ -28,11 +36,6 @@ function Header() {
                     <Link to="/aboutus">
                         <HeaderAbout>
                             <a href = "#/">About Us |</a>
-                        </HeaderAbout>
-                    </Link>
-                    <Link to="/Uploadpage">
-                        <HeaderAbout>
-                            <a href = "#/"> Upload Page |</a>
                         </HeaderAbout>
                     </Link>
                     <Link to="/contactus">
@@ -49,11 +52,15 @@ function Header() {
                         </HeaderOptionsFavorite>
                     </Link>
 
-                    <Link to="/SignUp">
+                    <Link to="/profile">
                         <HeaderOptionsProfile>
                             <PermIdentityIcon/>
                         </HeaderOptionsProfile>
                     </Link>
+
+                    <HeaderOptionLogOut>
+                        <button onClick={logouthandle}>Log Out</button>
+                    </HeaderOptionLogOut>
 
                 </HeaderOptions>
 
@@ -89,7 +96,7 @@ const HeaderSearch = styled.div`
 `
 
 const HeaderSearchInput = styled.input`
-    
+
 `
 
 const HeaderSearchIcon = styled.div`
@@ -129,5 +136,9 @@ const HeaderOptionsFavorite = styled.div`
 `
 
 const HeaderOptionsProfile = styled.div`
+
+`
+
+const HeaderOptionLogOut = styled.div`
 
 `

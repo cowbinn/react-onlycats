@@ -16,16 +16,16 @@ function Header() {
         auth.signOut()
         history.push("/signin")
       }
-    
+
     return (
         <div>
             <HeaderContainer>
                 <HeaderLogo>
-                    <Link to="/">                    
-                        <a href = "#/">OnlyCats</a>                  
+                    <Link to="/">
+                        <a href = "#/">OnlyCats</a>
                     </Link>
                 </HeaderLogo>
-                
+
                 <HeaderSearch>
                     <HeaderSearchInput type='text'></HeaderSearchInput>
                     <HeaderSearchIcon>
@@ -101,7 +101,7 @@ const HeaderSearch = styled.div`
 `
 
 const HeaderSearchInput = styled.input`
-    
+
 `
 
 const HeaderSearchIcon = styled.div`

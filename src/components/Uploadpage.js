@@ -1,8 +1,17 @@
 import React, {useState} from 'react';
-import {storage} from "./config";
+import firebase, { storage, firestore } from "./config";
 
 
 const Uploadpage = () =>{
+  var currUserID;
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          currUserID = firebase.auth().currentUser.uid;
+      } else {
+          // No user is signed in.
+      }
+  });
+
     const [file, setFile] = useState(null);
     const [url, setURL] = useState("");
   
@@ -22,6 +31,11 @@ const Uploadpage = () =>{
             setFile(null);
             setURL(url);
           });
+
+          firestore.collection('users').doc(currUserID).update({
+            "img":
+              firebase.firestore.FieldValue.arrayUnion(file.name)
+          });
       });
     }
   
@@ -29,13 +43,11 @@ const Uploadpage = () =>{
       <div>
         <form onSubmit={handleUpload}>
           <input type="file" onChange={handleChange} />
-          <button disabled={!file}>upload to firebase</button>
+          <button disabled={!file}>Upload</button>
         </form>
         <img src={url} alt="" />
       </div>
     );
   }
-
-  
 
 export default Uploadpage;

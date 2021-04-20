@@ -34,7 +34,7 @@ const SignUp = () => {
     setEmail("");
     setPassword("");
     setDisplayName("");
-    console.log("i send it there")
+    //console.log("i send it there")
     history.push("/signin")
   }
   const onChangeHandler = event => {

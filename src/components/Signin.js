@@ -13,6 +13,7 @@ const Signin = () => {
   const loginHandle = (e)=> {
     e.preventDefault();
     auth.signInWithEmailAndPassword(email, password).then ((e)=>{console.log("login successful");history.push("/")}).catch((error)=>{
+      alert(error);
       console.log(error);
     });
 
@@ -25,7 +26,7 @@ const Signin = () => {
       setPassword(value);
     } 
   };
-  console.log (email, password)
+  // console.log (email, password)
   
 
   return (

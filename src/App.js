@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import './App.css'
-import firebase, { auth } from './components/config.js'
+import firebase from './components/config.js'
 
 import Favorite from './components/Favorite.js'
 import Profile from './components/Profile.js'
@@ -18,12 +18,15 @@ import Uploadpage from './components/Uploadpage'
 import PrivateRoute from './routers/PrivateRoute'
 
 function App() {
+  // var cUser= firebase.auth().currentUser ;
   firebase.auth().onAuthStateChanged(function (user){
     if(user){
-      console.log("im logged in fucker");
+      console.log("current user login is: "+user.email);
+      // console.log ("now user = "+ cUser.email);
     }
     else {
       console.log("not log in")
+      // cUser.email= null;
     }
   });
   

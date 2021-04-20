@@ -1,4 +1,3 @@
-import { Button } from '@material-ui/core';
 import React, {useState} from 'react';
 import firebase, { storage, firestore } from "./config";
 import styled from 'styled-components';
@@ -58,9 +57,7 @@ function Profile() {
           });
 
           firestore.collection('users').doc(currUserID).update({
-            "img":
-              firebase.firestore.FieldValue.arrayUnion(file.name)
-          });
+            "profilePicture":file.name});
       });
     }
     // function reauthenticate(userOldPassword){

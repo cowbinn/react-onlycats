@@ -116,11 +116,6 @@ const HeaderContact = styled.div`
     color: black;
 `
 
-const HeaderAbout = styled.div`
-
-`
-
-
 const HeaderOptions = styled.div`
     padding: 25px 25px 25px 25px;
     display: flex;

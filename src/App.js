@@ -36,7 +36,7 @@ function App() {
         
         <Switch>
           <PrivateRoute path="/favorites" component={Favorite} />
-          <PrivateRoute path="/Uploadpage" component={Uploadpage} />
+          <PrivateRoute path="/upload" component={Uploadpage} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/cart" component={Cart} />
           <PrivateRoute path="/contactus" component={Contactus} />

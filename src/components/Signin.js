@@ -31,6 +31,7 @@ const Signin = () => {
 
   return (
     <SignInSection >
+      <h1>OnlyCats</h1>
       <SignInContainer>
         <h1 >Log In</h1>
         <div>
@@ -80,15 +81,17 @@ export default Signin
 
 const SignInSection = styled.section
 `
-  border: 10px solid red;
+  border: 10px solid #EEDBD7;
   height: 90vh
 `
 
 const SignInContainer = styled.div`
-  border: 10px solid blue;
+  border-radius: 25px;
+  border: 2px solid #7F85F4;
   max-width: 700px;
   width: 100%;
 
+  background: #F2F2F2;
   height: 50vh;
   align-items: center;
   justify-content: center;
@@ -107,10 +110,10 @@ const SignInContainer = styled.div`
 `
 
 const SignInButton = styled.button`
-  background: red;
+  background: #7F85F4;
   border-radius: 3px;
   border: 2px solid palevioletred;
-  color: palevioletred;
+  color: black;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
 

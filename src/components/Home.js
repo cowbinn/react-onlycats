@@ -21,13 +21,13 @@ function Home() {
     let [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        let isMounted = true
         setLoading(true);
+        
         const fetchUsers = async() => {
             const response = firestore.collection('users');
             const data = await response.get();
             data.docs.forEach(item=> {
-                if(currUserID === item.data().username) {}
+                if(currUserID === item.data().uid) {}
                 else {
                     storage.ref('images/').child(item.data().profilePicture).getDownloadURL().then((url) => {
                         setUsers(users => [...users, item.data()]);
@@ -38,7 +38,7 @@ function Home() {
             });
         }
         fetchUsers();
-        return () => (isMounted = false)
+        return () => (false)
       }, [])
       // {homes.map(home => <div>{home.name}</div>)}
     const usersList = users.map((data, index)=>{

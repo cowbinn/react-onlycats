@@ -21,8 +21,8 @@ function Header() {
         <div>
             <HeaderContainer>
                 <HeaderLogo>
-                    <Link to="/">
-                        <a href = "#/">OnlyCats</a>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <h1>OnlyCats</h1>
                     </Link>
                 </HeaderLogo>
 
@@ -33,26 +33,31 @@ function Header() {
                     </HeaderSearchIcon>
                 </HeaderSearch>
                 <HeaderMission>
-                    <Link to="/aboutus">
-                        <HeaderAbout>
-                            <a href = "#/">About Us |</a>
-                        </HeaderAbout>
-                    </Link>
-                    <Link to="/contactus">
+                    <Link to="/aboutus" style={{ textDecoration: 'none' }}>
                         <HeaderContact>
-                            <a href = "#/"> Customer Support</a>
+                            <h5>About Us |</h5>
+                        </HeaderContact>
+                    </Link>
+                    <Link to="/upload" style={{ textDecoration: 'none' }}>
+                        <HeaderContact>
+                            <h5> Upload Picture | </h5>
+                        </HeaderContact>
+                    </Link>
+                    <Link to="/contactus" style={{ textDecoration: 'none' }}>
+                        <HeaderContact>
+                            <h5> Customer Support</h5>
                         </HeaderContact>
                     </Link>
                 </HeaderMission>
 
                 <HeaderOptions>
-                    <Link to="/favorites">
+                    <Link to="/favorites" style={{ textDecoration: 'none' }}>
                         <HeaderOptionsFavorite>
                             <FavoriteBorderIcon />
                         </HeaderOptionsFavorite>
                     </Link>
 
-                    <Link to="/profile">
+                    <Link to="/profile" style={{ textDecoration: 'none' }}>
                         <HeaderOptionsProfile>
                             <PermIdentityIcon/>
                         </HeaderOptionsProfile>
@@ -83,9 +88,7 @@ const HeaderContainer = styled.div`
 
 const HeaderLogo = styled.div`
     display: flex;
-    a {
-        font-size: 50px;
-        text-decoration: none;
+    h1 {
         color: black;
     }
 `;
@@ -107,14 +110,10 @@ const HeaderMission = styled.div`
     display:flex;
     padding: 25px 25px 25px 25px;
     text-decoration: none;
-    a {
-        color: black;
-        text-decoration: none;
-    }
 `
 
 const HeaderContact = styled.div`
-
+    color: black;
 `
 
 const HeaderAbout = styled.div`
@@ -125,18 +124,15 @@ const HeaderAbout = styled.div`
 const HeaderOptions = styled.div`
     padding: 25px 25px 25px 25px;
     display: flex;
-    a {
-        color: black;
-        text-decoration: none;
-    }
+
 `
 
 const HeaderOptionsFavorite = styled.div`
-
+color: black;
 `
 
 const HeaderOptionsProfile = styled.div`
-
+color: black;
 `
 
 const HeaderOptionLogOut = styled.div`

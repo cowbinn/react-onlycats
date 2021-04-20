@@ -19,7 +19,6 @@ function PayPal() {
   const [url, setURL] = useState("");
   const [fin, setFin] = useState(false);
   useEffect(() => {
-    let isMounted = true;
     const fetchUser = async() => {
       const response = firestore.collection('users').doc(id);
       await response.get().then(doc => {
@@ -36,7 +35,7 @@ function PayPal() {
     }
 
     fetchUser();
-    return () => (isMounted = false)
+    return () => (false)
   }, []);
 
   const createOrder = (data, actions) =>{

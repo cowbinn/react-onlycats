@@ -15,7 +15,6 @@ function Favorite() {
 
     // this is probably super inefficient but I don't know how else to do it lol
     useEffect(() => {
-        let isMounted = true;
         setLoading(true);
         const currUserID = firebase.auth().currentUser.uid;
         const fetchUsers = async() => {
@@ -41,7 +40,7 @@ function Favorite() {
 
         }
         fetchUsers();
-        return () => (isMounted = false)
+        return () => (false)
       }, [])
 
       // {homes.map(home => <div>{home.name}</div>)}
@@ -60,7 +59,7 @@ function Favorite() {
             )
         }
         return(
-            <div>
+            <div key = {index}>
                 <h2>Your subscriber list is empty!</h2>
             </div>
         );

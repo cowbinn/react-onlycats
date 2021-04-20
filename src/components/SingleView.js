@@ -20,7 +20,6 @@ function SingleView() {
     const [imgFin, setImgFin] = useState(false);
     const [isSubbed, setIsSubbed] = useState(false);
     useEffect(() => {
-        let isMounted = true
         const response = firestore.collection('users').doc(id);
 
         const fetchUsers = async() => {

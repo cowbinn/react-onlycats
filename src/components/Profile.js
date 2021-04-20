@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import firebase, { storage, firestore } from "./config";
 import styled from 'styled-components';
 
@@ -21,7 +21,26 @@ function Profile() {
     const [displayName, setDisplayName] = useState("");
     const [userDescription, setuserDescription] = useState("");
     const [userOldPassword, setuserOldPassword]= useState("");
+    const [load, setLoad] = useState(false);
 
+  useEffect(() => {
+    setLoad(true);
+
+    const fetchPFP = async() => {
+      const response = firestore.collection('users').doc(currUserID);
+
+      await response.get().then(doc => {
+          storage.ref('images/')
+              .child(doc.data().profilePicture)
+              .getDownloadURL().then((url) => {
+                  setURL(url);
+                  setLoad(false);
+                  return url;
+              });
+      });
+    }
+    fetchPFP();
+  }, []);
   
     function handleChange(e) {
       setFile(e.target.files[0]);
@@ -102,67 +121,63 @@ function Profile() {
         });
     }
     return (
-        <div>
-            <h1>Account Settings</h1>
-            <form className="">
-            <br/>
-            <label >
-              Email:
-            </label>
-            <input
-              type="email"
-              name="userEmail"
-              id="userEmail"
-              onChange = {onChangeHandler}
-            />
-            <button onClick = {emailUpdateHandler}>update email</button>
-            <br/>
-            <label>
-              Password:
-            </label>
-            <input
-              type="password"
-              name="userPassword"
-              id="userPassword"
-              onChange= {onChangeHandler}
-            />
-            <button onClick = {passwordUpdateHandler}>update password</button>
-            <br/>
-
-            <label>
-              Description:
-            </label>
-            <input
-              type="description"
-              name="userDescription"
-              id="userDescription"
-              onChange ={onChangeHandler}
-            />
-            <button onClick = {descriptionUpdateHandler}>update description</button>
-          </form>
+        <div> {load ? (<div>Loading...</div>) : (
           <div>
-            <form onSubmit={handleUpload}>
-              <input type="file" onChange={handleChange} />
-              <button disabled={!file}>Upload</button>
- 
+            <h1>Account Settings</h1>
+              <form className="">
+              <br/>
+              <label >
+                Email:
+              </label>
+              <input
+                type="email"
+                name="userEmail"
+                id="userEmail"
+                onChange = {onChangeHandler}
+              />
+              <button onClick = {emailUpdateHandler}>update email</button>
+              <br/>
+              <label>
+                Password:
+              </label>
+              <input
+                type="password"
+                name="userPassword"
+                id="userPassword"
+                onChange= {onChangeHandler}
+              />
+              <button onClick = {passwordUpdateHandler}>update password</button>
+              <br/>
+
+              <label>
+                Description:
+              </label>
+              <input
+                type="description"
+                name="userDescription"
+                id="userDescription"
+                onChange ={onChangeHandler}
+              />
+              <button onClick = {descriptionUpdateHandler}>update description</button>
             </form>
-            <img src={url} alt="" />
-            <h1>
-            {firebase.auth().currentUser.email}
-            </h1>
-          </div>
-          <br/>
-          <div >
-                <Picture>
-                    
-                        {/* <img src= {currUserID.url} alt="profile" /> */}
-                    
-                </Picture>
-                
-                <hr />
+            <div>
+              <form onSubmit={handleUpload}>
+                <input type="file" onChange={handleChange} />
+                <button disabled={!file}>Upload</button>
+  
+              </form>
+              <h1>
+              {firebase.auth().currentUser.email}
+              </h1>
+              <Picture>
+                <img src={url} alt="" />
+              </Picture>
             </div>
-        </div>
-        
+            <br/>
+                  <hr />
+          </div>
+        )}
+    </div>
     )
     
 }
@@ -170,7 +185,10 @@ function Profile() {
 export default Profile
 
 const Picture = styled.div`
+  
     img {
+        border-radius: 25px;
+        border: 2px solid #7F85F4;
         width: 140px
     }
 `

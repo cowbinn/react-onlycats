@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useHistory} from "react-router-dom"
-import './header.css'
 
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';

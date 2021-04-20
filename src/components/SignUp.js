@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import {auth, firestore} from "./config";
-import './signup.css'
 
 import styled from 'styled-components';
 
@@ -49,17 +48,12 @@ const SignUp = () => {
   };
   
   return (
-    <SignUpContainer>
-      <div id="signup-label"><h1>Sign Up</h1></div>
-      <div>
-        <div id="signup-field">
-          <form className="">
-            <div id="signup-field">
-              <label>
-                UserName:
-              </label>
-              <br/>
-              <input
+    <SignUpBody>
+      <SignUpCenter>
+      <SignUpHeading>Sign Up</SignUpHeading>
+          <SignUpForm>
+            <SignUpTextFields>
+              <SignUpInputs
                 type="text"
                 name="displayName"
                 value={displayName}
@@ -68,28 +62,18 @@ const SignUp = () => {
                 onChange={event => onChangeHandler(event)}
               
               />
-            </div>
-            <br/>
-            <div id="signup-field">
-              <label >
-                Email:
-              </label>
-              <br/>
-              <input type="email" name="userEmail"
+            </SignUpTextFields>
+            <SignUpTextFields>
+              <SignUpInputs
+                type="email" name="userEmail"
                 value={email}
                 placeholder="Enter Email"
                 id="userEmail"
                 onChange={event => onChangeHandler(event)}
               />
-            </div>
-            
-            <br/>
-            <div id="signup-field">
-              <label>
-                Password:
-              </label>
-              <br/>
-              <input
+            </SignUpTextFields>
+            <SignUpTextFields>
+              <SignUpInputs
                 className="test"
                 type="password"
                 name="userPassword"
@@ -98,31 +82,113 @@ const SignUp = () => {
                 id="userPassword"
                 onChange={event => onChangeHandler(event)}
               />
-            </div>
-            
-          
-          <br/>
-            <div id="signup-button">
-              <button onClick={createUserByEmail}>
+            </SignUpTextFields>
+            <div>
+              <SignUpButton onClick={createUserByEmail}>
                 Sign up
-              </button>
+              </SignUpButton>
             </div>
-          </form>
-          
-        </div>
-        <h3 >
+          </SignUpForm>
+
+        <SignUpBottomH3 >
           Already have an account?{" "}
-          <Link to="Signin">
-            Sign in here
-          </Link>
-          
-        </h3>
-      </div>
-    </SignUpContainer>
+          <A href="/signin">Sign In</A>
+        </SignUpBottomH3>
+      </SignUpCenter>
+    </SignUpBody>
   );
 };
 export default SignUp;
 
-const SignUpContainer = styled.div`
-  
+const SignUpBody = styled.body`
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #EEDBD7, #FF7F50);
+  height: 100vh;
+  overflow: hidden;
+`
+
+const SignUpHeading = styled.h1
+`
+  font-size: 50px;
+  text-align: center;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid silver;
+`
+
+const SignUpCenter = styled.div
+`
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 20px;
+`
+
+const SignUpForm = styled.form
+`
+  padding: 0 40px;
+  box-sizing: border-box;
+`
+
+const SignUpTextFields = styled.div
+`
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+`
+
+const SignUpInputs = styled.input
+`
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2691d9;
+  }
+`
+
+const SignUpButton = styled.button
+`
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    border-color: black;
+    transition: 0.5s;
+  }
+`
+
+const SignUpBottomH3 = styled.h3
+`
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+`
+
+const A = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `

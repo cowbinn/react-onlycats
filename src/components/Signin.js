@@ -30,95 +30,138 @@ const Signin = () => {
   
 
   return (
-    <SignInSection >
-      <h1>OnlyCats</h1>
-      <SignInContainer>
-        <h1 >Log In</h1>
-        <div>
-          <form className="">
-            <label >
-              Email:
-            </label>
-            <input
-              type="email"
-              name="userEmail"
-              
-              placeholder="Enter Email"
-              id="userEmail"
-              onChange={event => onChangeHandler(event)}
-            />
-            <br/>
-            <label>
-              Password:
-            </label>
-            <input
-              type="password"
-              name="userPassword"
-              
-              placeholder="Enter Password"
-              id="userPassword"
-              onChange={event => onChangeHandler(event)}
-            />
-            <br/>
-            <SignInButton onClick={loginHandle}>
-              Log in
-            </SignInButton>
-          </form>
-          <h3 >
+    <SignInBody>
+        <SignInCenter>
+          <SignInHeading>Log In</SignInHeading>
+          <SignInForm method="post">
+            <SignInTextFields>
+              <SignInInputs
+                type="email"
+                name="userEmail"
+                placeholder="Email Address"
+                id="userEmail"
+                onChange={event => onChangeHandler(event)}
+              />
+            </SignInTextFields>
+            <SignInTextFields>
+              <SignInInputs
+                type="password"
+                name="userPassword"
+                placeholder="Password"
+                id="userPassword"
+                onChange={event => onChangeHandler(event)}
+              />
+
+            </SignInTextFields>
+            <div>
+              <br/>
+              <SignInButton onClick={loginHandle}>
+                Log in
+              </SignInButton>
+            </div>
+          </SignInForm>
+          <SignInBottomH3>
             Don't Have an Account?{" "}
-            <Link to="/signup">
-              Register
-            </Link>
-            
-          </h3>
-      </div>
-      </SignInContainer>
-    </SignInSection>
+            <A href="/signUp">Register</A>
+          </SignInBottomH3>
+      </SignInCenter>
+    </SignInBody>
     )
 }
 
 export default Signin
 
-const SignInSection = styled.section
+const SignInBody = styled.body
 `
-  border: 10px solid #EEDBD7;
-  height: 90vh
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(120deg, #EEDBD7, #FF7F50);
+  height: 100vh;
+  overflow: hidden;
 `
 
-const SignInContainer = styled.div`
-  border-radius: 25px;
-  border: 2px solid #7F85F4;
-  max-width: 700px;
-  width: 100%;
-
-  background: #F2F2F2;
-  height: 50vh;
-  align-items: center;
-  justify-content: center;
-
+const SignInCenter = styled.div
+`
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: white;
+  border-radius: 20px;
+`
 
-  h1 {
-    font-size: 40px;
-    text-align: center;
+const SignInHeading = styled.h1
+`
+  font-size: 50px;
+  text-align: center;
+  padding: 20px 0 20px 0;
+  border-bottom: 1px solid silver;
+  
+`
+
+const SignInForm = styled.form
+`
+  padding: 0 40px;
+  box-sizing: border-box;
+`
+
+const SignInTextFields = styled.div 
+`
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin: 30px 0;
+
+
+`
+
+const SignInInputs = styled.input 
+`
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2691d9;
   }
 `
 
 const SignInButton = styled.button`
-  background: #7F85F4;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: black;
-  margin: 0.5em 1em;
-  padding: 0.25em 1em;
-
-  ${props => props.primary && css`
-    background: red;
-    color: white;
-  `}
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  outline: none;
+  &:hover {
+    border-color: black;
+    transition: 0.5s;
+  }
 `;
+
+const SignInBottomH3 = styled.h3
+`
+  margin: 30px 0;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  text-decoration: none;
+`
+const A = styled.a`
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+`

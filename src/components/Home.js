@@ -71,6 +71,8 @@ export default Home
 
 const Picture = styled.div`
     img {
+        border-radius: 25px;
+        border: 2px solid #7F85F4;
         width: 140px
     }
 `

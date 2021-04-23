@@ -18,8 +18,8 @@ const SignUp = () => {
         password:password,
         username: displayName,
         description: 'default',
-        favorites: [],
-        img: [],
+        favorites: ["NULL"],
+        img: ["NULL"],
         profilePicture: 'default.png'
     }
     

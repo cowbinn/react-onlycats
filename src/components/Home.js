@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import firebase, { storage, firestore } from "./config";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -54,10 +54,7 @@ function Home() {
                         <UsernameDisplayed>{data.username}</UsernameDisplayed>
                     </Link>
                     <img src= {urls[index]} alt="profile" />
-                        
                 </div>
-
-
         )
     });
       return (
@@ -78,13 +75,13 @@ function Home() {
 export default Home
 
 
-const CardWrapper = styled.div`
-    a { 
-        text-decoration: none;
-        color: black;
-    }
+// const CardWrapper = styled.div`
+//     a { 
+//         text-decoration: none;
+//         color: black;
+//     }
     
-`
+// `
 
 const UsernameDisplayed = styled.h2
 `

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { auth } from "./config";
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Signin = () => {
   const [email, setEmail] = useState("");

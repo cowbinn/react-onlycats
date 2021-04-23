@@ -2,10 +2,13 @@ import React, { useState, useEffect }  from "react";
 import ReactDOM from "react-dom"
 import styled from 'styled-components';
 import firebase, { storage, firestore } from "./config";
+import { useHistory } from "react-router-dom";
+
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function PayPal() {
   let id = window.location.pathname.split("/").pop();
+  var history = useHistory();
   var currUserID;
   firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
@@ -56,6 +59,8 @@ function PayPal() {
       firestore.collection('users').doc(currUserID).update({
         "favorites":
           firebase.firestore.FieldValue.arrayUnion(id)
+      }).then(function(details) {
+        history.push("/favorites")
       });
     });
   };

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel .slide {
+    height: 80vh;
+    background-color: beige;
+}
+
+.carousel .slide image {
+    max-height: 80%;
+    width: 50%;
+    
+}
+.image {
+    margin: 0 auto;
+    height: 500px;
+    width: 500px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .carousel {
+        height: 80vh;
+    }
+    .carousel .slide image {
+        max-height: 80%;
+        width: 50%;
+    }
+}

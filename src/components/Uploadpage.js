@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import firebase, { storage, firestore } from "./config";
 
+import styled from 'styled-components';
 
 const Uploadpage = () =>{
   var currUserID;
@@ -40,14 +41,41 @@ const Uploadpage = () =>{
     }
   
     return (
-      <div>
+      <UploadContainer>
         <form onSubmit={handleUpload}>
-          <input type="file" onChange={handleChange} />
-          <button disabled={!file}>Upload</button>
+          <UploadFile type="file" onChange={handleChange} />
+          <UploadButton disabled={!file}>Upload</UploadButton>
         </form>
         <img src={url} alt="" />
-      </div>
+      </UploadContainer>
     );
   }
 
 export default Uploadpage;
+
+const UploadContainer = styled.div`
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+`
+
+const UploadFile = styled.input
+`
+  font-size: 16px;
+`
+const UploadButton = styled.button`
+  width: 6rem;
+  height: 40px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+  &:hover {
+    border-color: black;
+    transition: 0.3s;
+  }
+`

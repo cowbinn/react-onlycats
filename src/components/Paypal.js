@@ -64,10 +64,14 @@ function PayPal() {
     <div>
       { fin ? (
         <React.Fragment>
+            <UserInformation>
+              <h1>Following: </h1>
               <h1>{user.username}</h1>
+              
               <Picture>
                   <img src = {url} alt = "Profile" />
               </Picture>
+            </UserInformation>
           <PayPalBlock>
             <PayPalButton
               createOrder={(data, actions) => createOrder(data, actions)}
@@ -83,14 +87,26 @@ function PayPal() {
 
 export default PayPal;
 
+const UserInformation = styled.div
+`
+  display: flex;
+  flex-direction: column;
+  justity-content: center;
+  align-items: center;
+  margin-top: 2rem;
+`
+
 const PayPalBlock = styled.div`
   display: grid;
-  margin: 100px 10px;
   place-items: center;
+  margin-top: 2rem;
 `
 
 const Picture = styled.div`
-    img {
-        width: 500px
+  margin-top: 2rem;
+  img {
+       width: 400px;
+      border: 1px solid blue;
+      border-radius: 25px;
     }
 `

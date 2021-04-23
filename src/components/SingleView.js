@@ -103,27 +103,78 @@ function SingleView() {
     };
 
     return(
-        <div>
+        <SingleViewContainer>
         {fin && imgFin ? (
             <React.Fragment>
-                <h1>{user.username}</h1>
-                <h2>{user.description}</h2>
-                <Picture>
-                    <img src = {url} alt = "Profile" />
-                </Picture>
-{/*        follow button that links to paypal && passes in id param          */}
-                <Link to={`/cart/${id}`}>
-                    <button disabled={isSubbed}>Follow</button>
-                </Link>
+                <Content>
+                    <UsernameAndFollow>
+                        <h1>{user.username}</h1>
+                        <Link to={`/cart/${id}`}>
+                            <FollowButton disabled={isSubbed}>Follow</FollowButton>
+                        </Link>
+                    </UsernameAndFollow>
+                    
+                    <DescriptionH2>Description: {user.description}</DescriptionH2>
+                    <Picture>
+                        <img src = {url} alt = "Profile" />
+                    </Picture>
+    {/*        follow button that links to paypal && passes in id param          */}
+                </Content>
                 {imageList()}
             </React.Fragment>
         ) : (null) }
-        </div>
+        </SingleViewContainer>
 
     );
 }
 
 export default SingleView
+
+const SingleViewContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
+const Content = styled.div`
+`
+
+const UsernameAndFollow = styled.div`
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    text-decoration: underline;
+`
+
+const FollowButton = styled.button`
+    width: 8rem;
+    height: 46px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 30px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    margin-left: 1rem;
+    &:hover {
+        border-color: black;
+        transition: 0.3s;
+    }
+    &:disabled { 
+        color: white;
+        background: white;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: default;
+        border-color: white;
+    }
+`
+
+const DescriptionH2 = styled.h2`
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+`
 
 const Picture = styled.div`
     img {

@@ -47,15 +47,15 @@ function Favorite() {
     const usersList = users.map((data, index)=>{
         if(urls.length > 1) {
             return(
-                <div key = {index}>
-                <Picture>
-                    <Link to={`/singleview/${data.uid}`}>
-                        <img src= {urls[index]} alt="profile" />
-                    </Link>
-                </Picture>
-                <h2>{data.username}</h2>
-                <hr />
-            </div>
+                    <FavoriteUsers key = {index}>
+                        <Picture>
+                            <Link to={`/singleview/${data.uid}`}>
+                                <img src= {urls[index]} alt="profile" />
+                            </Link>
+                        </Picture>
+                        <h2>{data.username}</h2>
+
+                    </FavoriteUsers>
             )
         }
         return(
@@ -65,7 +65,7 @@ function Favorite() {
         );
     });
       return (
-        <div>
+        <FavoriteContainer>
             { loading ? (<div>Loading...</div>) : 
                 (
                     <React.Fragment>
@@ -73,11 +73,23 @@ function Favorite() {
                     </React.Fragment>
                 )
             }
-        </div>
+        </FavoriteContainer>
     );
 }
 
 export default Favorite
+
+const FavoriteContainer = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`
+const FavoriteUsers = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+`
+
 
 const Picture = styled.div`
     img {

@@ -122,60 +122,67 @@ function Profile() {
     }
     return (
         <div> {load ? (<div>Loading...</div>) : (
-          <div>
+          <AccountSettingContainer>
             <h1>Account Settings</h1>
+            <h3>
+              Current Email: {firebase.auth().currentUser.email}
+              </h3>
               <form className="">
               <br/>
               <label >
                 Email:
               </label>
-              <input
-                type="email"
-                name="userEmail"
-                id="userEmail"
-                onChange = {onChangeHandler}
-              />
-              <button onClick = {emailUpdateHandler}>update email</button>
+              <br/>
+              <AccountSettingTextFields>
+                <FormInput
+                  type="email"
+                  name="userEmail"
+                  id="userEmail"
+                  onChange = {onChangeHandler}
+                /> 
+                <AccountUpdateButton onClick = {emailUpdateHandler}>Update Email</AccountUpdateButton>
+              </AccountSettingTextFields>
               <br/>
               <label>
                 Password:
               </label>
-              <input
+              <AccountSettingTextFields>
+              <FormInput
                 type="password"
                 name="userPassword"
                 id="userPassword"
                 onChange= {onChangeHandler}
               />
-              <button onClick = {passwordUpdateHandler}>update password</button>
-              <br/>
-
+              <AccountUpdateButton onClick = {passwordUpdateHandler}>Update Password</AccountUpdateButton>
+              </AccountSettingTextFields>
               <label>
                 Description:
               </label>
-              <input
-                type="description"
-                name="userDescription"
-                id="userDescription"
-                onChange ={onChangeHandler}
-              />
-              <button onClick = {descriptionUpdateHandler}>update description</button>
+              <AccountSettingTextFields>
+                <FormInput
+                  type="description"
+                  name="userDescription"
+                  id="userDescription"
+                  onChange ={onChangeHandler}
+                />
+                <AccountUpdateButton onClick = {descriptionUpdateHandler}>Update Description</AccountUpdateButton>
+              </AccountSettingTextFields>
             </form>
-            <div>
+            <br/>
+            <AccountUploadAndProfilePic>
               <form onSubmit={handleUpload}>
-                <input type="file" onChange={handleChange} />
-                <button disabled={!file}>Upload</button>
-  
+                <UploadFile type="file" onChange={handleChange} />
+                <UploadButton disabled={!file}>Upload</UploadButton>
+
               </form>
-              <h1>
-              {firebase.auth().currentUser.email}
-              </h1>
+              
               <Picture>
                 <img src={url} alt="" />
               </Picture>
-            </div>
+            </AccountUploadAndProfilePic>
             <br/>
                   <hr />
-          </div>
+          </AccountSettingContainer>
         )}
     </div>
     )
@@ -184,11 +191,95 @@ function Profile() {
 
 export default Profile
 
+const AccountSettingContainer = styled.div
+`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  width: 100vw;
+  h1 {
+    padding-bottom: 10px;
+  }
+`
+
+const AccountSettingTextFields = styled.div
+`
+  display: flex;
+  margin: 10px 0;
+`
+
+const FormInput = styled.input
+`
+  width: 300px;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: 2px solid #adadad;
+  background: none;
+  outline: none;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #2691d9;
+  }
+`
+const AccountUpdateButton = styled.button
+`
+  width: 10rem;
+  height: 46px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  margin-left: 10px;
+  &:hover {
+    border-color: black;
+    transition: 0.3s;
+  }
+`
+
+const AccountUploadAndProfilePic = styled.div
+`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+`
+
+const UploadFile = styled.input
+`
+  font-size: 16px;
+`
+const UploadButton = styled.button`
+  width: 10rem;
+  height: 40px;
+  border: 1px solid;
+  background: #2691d9;
+  border-radius: 30px;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+  &:hover {
+    border-color: black;
+    transition: 0.3s;
+  }
+`
+
 const Picture = styled.div`
-  
+  padding-top: 20px;
     img {
         border-radius: 25px;
         border: 2px solid #7F85F4;
-        width: 140px
+        width: 280px;
     }
 `

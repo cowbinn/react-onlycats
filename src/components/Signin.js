@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./config";
 
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -62,7 +62,7 @@ const Signin = () => {
           </SignInForm>
           <SignInBottomH3>
             Don't Have an Account?{" "}
-            <A href="/signUp">Register</A>
+            <A href="/signup">Register</A>
           </SignInBottomH3>
       </SignInCenter>
     </SignInBody>

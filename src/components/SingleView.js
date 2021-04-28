@@ -46,15 +46,14 @@ function SingleView() {
                     if(element === id) {
                         response.get().then(doc => {
                             let imgList = doc.data().img;
+                            console.log(imgList.length, imgList);
                             if(imgList.length < 2) {
                                 console.log("there are no images.");
                             } else {
                                 imgList.slice(1).forEach(element => {
-                                    firestore.collection('users').doc(element).get().then(item => {
-                                        let varo = item.data();
-                                        storage.ref('images/').child(varo.profilePicture).getDownloadURL().then((url) => {
-                                            setImg(img => [...img, url]);
-                                        });
+                                    console.log(element);
+                                    storage.ref('images/').child(element).getDownloadURL().then((url) => {
+                                        setImg(img => [...img, url]);
                                     });
                                 });
                             }
@@ -71,17 +70,18 @@ function SingleView() {
 
     const imageList = function() {
         if(isSubbed) {
-            console.log("subbed")
-            if(img.length > 1) {
-                img.map((url, index) => {
-                    return(
-                        <div key = {index}>
-                            <Picture>
-                                <img src = {url} alt = "images" />
-                            </Picture>
-                        </div>
-                    )
-                })
+            if(img.length > 0) {
+                return(
+                    img.map((urll, index) => {
+                        return(
+                            <div key = {index}>
+                                <ImgListPicture>
+                                    <img src= {urll} alt="profile" />
+                                </ImgListPicture>
+                            </div>
+                        )
+                    })
+                );
             } else {
                 return(
                     <div>
@@ -118,9 +118,12 @@ function SingleView() {
                     <Picture>
                         <img src = {url} alt = "Profile" />
                     </Picture>
-    {/*        follow button that links to paypal && passes in id param          */}
+                    {console.log("using img list as intended")}
+                    <hr style = {{margin: 12}}/>
+                    <ImgListContainer>
+                        {imageList()}
+                    </ImgListContainer>
                 </Content>
-                {imageList()}
             </React.Fragment>
         ) : (null) }
         </SingleViewContainer>
@@ -135,7 +138,18 @@ const SingleViewContainer = styled.div`
     flex-direction: column;
     align-items: center;
 `
+const ImgListContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
 
+const ImgListPicture = styled.div `
+    img {
+        border-radius: 25px;
+        border: 2px solid #7F85F4;
+        width: 200px
+    }
+`
 const Content = styled.div`
 `
 

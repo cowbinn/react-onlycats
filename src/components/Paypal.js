@@ -21,6 +21,7 @@ function PayPal() {
   const [user, setUser] = useState();
   const [url, setURL] = useState("");
   const [fin, setFin] = useState(false);
+  const [uploading, setUploading] = useState(false);
   useEffect(() => {
     const fetchUser = async() => {
       const response = firestore.collection('users').doc(id);
@@ -42,7 +43,7 @@ function PayPal() {
   }, []);
 
   const createOrder = (data, actions) =>{
-    return actions.order.create({
+    return actions.order.create({  
       purchase_units: [
         {
           amount: {
@@ -55,19 +56,21 @@ function PayPal() {
 
   const onApprove = (data, actions) => {
     return actions.order.capture().then(function(details) {
+      setUploading(false);
       // Show a success message to the buyer
       firestore.collection('users').doc(currUserID).update({
         "favorites":
           firebase.firestore.FieldValue.arrayUnion(id)
       }).then(function(details) {
-        history.push("/favorites")
+        setUploading(false);
+        history.push("/favorites");
       });
     });
   };
 
   return (
     <div>
-      { fin ? (
+      { !uploading && fin ? (
         <React.Fragment>
             <UserInformation>
               <h1>Following: </h1>
@@ -84,7 +87,7 @@ function PayPal() {
             />
           </PayPalBlock>
         </React.Fragment>
-      ) : (null) }
+      ) : (<div>Loading...</div>) }
     <hr />
     </div>
   );

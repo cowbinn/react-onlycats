@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { auth } from "./config";
 
 import styled from 'styled-components';
@@ -62,7 +62,7 @@ const Signin = () => {
           </SignInForm>
           <SignInBottomH3>
             Don't Have an Account?{" "}
-            <A href="/signUp">Register</A>
+            <A href="/signup">Register</A>
           </SignInBottomH3>
       </SignInCenter>
     </SignInBody>

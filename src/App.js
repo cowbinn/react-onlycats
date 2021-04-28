@@ -10,12 +10,12 @@ import Contactus from './components/ContactUs.js'
 import Aboutus from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
-import SignUp from "./components/SignUp"
-import SignIn from "./components/Signin.js"
+import SignUp from './components/SignUp.js'
+import Signin from './components/Signin.js'
 import { BrowserRouter as Router,Switch, Route } from "react-router-dom"
 
-import Uploadpage from './components/Uploadpage'
-import PrivateRoute from './routers/PrivateRoute'
+import Uploadpage from './components/Uploadpage.js'
+import PrivateRoute from './routers/PrivateRoute.js'
 
 function App() {
   // var cUser= firebase.auth().currentUser ;
@@ -44,7 +44,7 @@ function App() {
           <PrivateRoute path="/singleview" component={SingleView} />
           <PrivateRoute path="/orderhistory" component={OrderHistory} />
           <Route path="/signup" component={SignUp} />
-          <Route path="/signin" component={SignIn}/>
+          <Route path="/signin" component={Signin}/>
           <PrivateRoute path="/"  component={Home} />
         </Switch>
       </div>

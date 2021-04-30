@@ -25,33 +25,33 @@ function Header() {
                     </Link>
                 </HeaderLogo>
 
-                <HeaderSearch>
+                {/* <HeaderSearch>
                     <HeaderSearchInput type='text'></HeaderSearchInput>
                     <HeaderSearchIcon>
                         <ImageSearchIcon />
                     </HeaderSearchIcon>
-                </HeaderSearch>
+                </HeaderSearch> */}
                 <HeaderMission>
+                    
+                    {/* <Link to="/contactus" style={{ textDecoration: 'none' }}>
+                        <HeaderContact>
+                            <h5> Customer Support</h5>
+                        </HeaderContact>
+                    </Link> */}
+                </HeaderMission>
+
+                <HeaderOptions>
                     <Link to="/aboutus" style={{ textDecoration: 'none' }}>
                         <HeaderContact>
                             <h5>About Us </h5>
                         </HeaderContact>
                     </Link>
-                    <a>|</a>
+                    <h5>|</h5>
                     <Link to="/upload" style={{ textDecoration: 'none' }}>
                         <HeaderContact>
-                            <h5> Upload Picture  </h5>
+                            <h5> Upload Picture</h5>
                         </HeaderContact>
                     </Link>
-                    <a>|</a>
-                    <Link to="/contactus" style={{ textDecoration: 'none' }}>
-                        <HeaderContact>
-                            <h5> Customer Support</h5>
-                        </HeaderContact>
-                    </Link>
-                </HeaderMission>
-
-                <HeaderOptions>
                     <Link to="/favorites" style={{ textDecoration: 'none' }}>
                         <HeaderOptionsFavorite>
                             <FavoriteBorderIcon />
@@ -93,17 +93,17 @@ const HeaderLogo = styled.div`
     }
 `;
 
-const HeaderSearch = styled.div`
-    display: flex;
-`
+// const HeaderSearch = styled.div`
+//     display: flex;
+// `
 
-const HeaderSearchInput = styled.input`
+// const HeaderSearchInput = styled.input`
 
-`
+// `
 
-const HeaderSearchIcon = styled.div`
-    background-color: white;
-`
+// const HeaderSearchIcon = styled.div`
+//     background-color: white;
+// `
 
 const HeaderMission = styled.div`
     display: flex;
@@ -125,9 +125,8 @@ const HeaderOptions = styled.div`
     padding: 25px 25px 25px 25px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     align-content: center;
-
-
 `
 
 const HeaderOptionsFavorite = styled.div`

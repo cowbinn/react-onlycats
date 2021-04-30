@@ -104,19 +104,30 @@ function Favorite() {
         }
     };
       return (
-        <FavoriteContainer>
-            { loading ? (<div>Loading...</div>) : 
-                (
-                    <React.Fragment>
-                        {usersList()}
-                    </React.Fragment>
-                )
-            }
-        </FavoriteContainer>
+        <FavoriteBody>
+            <FavoriteContainer>
+                { loading ? (<div>Loading...</div>) : 
+                    (
+                        <React.Fragment>
+                            {usersList()}
+                            <br />
+                        </React.Fragment>
+                    )
+                }
+            </FavoriteContainer>
+        </FavoriteBody>
     );
 }
 
 export default Favorite
+
+const FavoriteBody = styled.body
+`
+  margin: 0;
+  padding: 0;
+  height: 86vh;
+  overflow: hidden;
+`
 
 const FavoriteContainer = styled.div`
     display: flex;

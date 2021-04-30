@@ -115,13 +115,15 @@ const SignUpHeading = styled.h1
   padding: 20px 0 20px 0;
   border-bottom: 1px solid silver;
 `
-
+// https://www.w3schools.com/css/css3_shadows_box.asp
 const SignUpCenter = styled.div
 `
   position: absolute;
   top: 50%; 
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
   width: 400px;
   background: white;
   border-radius: 20px;

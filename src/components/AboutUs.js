@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styled from 'styled-components';
 
@@ -25,20 +25,17 @@ export default AboutUs
 
 const AboutUsBody = styled.body
 `
+  display: flex;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  background: white;
-  height: 100vh;
+  height: 86vh;
   overflow: hidden;
 `
 
 const AboutUsCenter = styled.div
 `
-  position: absolute;
-  top: 50%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
+  margin-top: 10%;
   height: 35%;
   background: #f5f0e1;
   border-radius: 20px;

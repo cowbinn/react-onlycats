@@ -147,7 +147,8 @@ const ImgListPicture = styled.div `
     img {
         border-radius: 25px;
         border: 2px solid #7F85F4;
-        width: 200px
+        width: 200px;
+        height: 120px;
     }
 `
 const Content = styled.div`
@@ -191,6 +192,8 @@ const DescriptionH2 = styled.h2`
 `
 
 const Picture = styled.div`
+    display: flex;
+    justify-content: center;
     img {
         border-radius: 25px;
         border: 2px solid #7F85F4;

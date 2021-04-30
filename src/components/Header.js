@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useHistory} from "react-router-dom"
 
-import ImageSearchIcon from '@material-ui/icons/ImageSearch';
+// import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 //import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -78,7 +78,7 @@ export default Header
 const HeaderContainer = styled.div`
     font-size: 20px;
     height: 100px;
-    background-color: #EEDBD7;
+    background: linear-gradient(#EEDBD7, #FFFFFF);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -155,6 +155,7 @@ const HeaderOptionLogOutButton = styled.button`
     &:hover {
         color: #000;
         background-color: #fff;
+        cursor: pointer;
         transition:
     }
 

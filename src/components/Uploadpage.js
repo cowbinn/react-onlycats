@@ -41,22 +41,45 @@ const Uploadpage = () =>{
     }
   
     return (
-      <UploadContainer>
-        <form onSubmit={handleUpload}>
-          <UploadFile type="file" onChange={handleChange} />
-          <UploadButton disabled={!file}>Upload</UploadButton>
-        </form>
-        <img src={url} alt="" />
-      </UploadContainer>
+      <UploadBody>
+        <UploadContainer>
+          <form style = {{height: `10%`}} onSubmit={handleUpload}>
+            <UploadFile type="file" onChange={handleChange} />
+            <UploadButton disabled={!file}>Upload</UploadButton>
+          </form>
+          <Picture>
+            <img src={url} alt="" />
+          </Picture>
+        </UploadContainer>
+      </UploadBody>
     );
   }
 
 export default Uploadpage;
+const Picture = styled.div 
+`
+  display: flex;
+  justify-content: center;
+
+  img {
+    border-radius: 25px;
+    border: 2px solid #7F85F4;
+    width: 40%;
+    height: auto;
+  }
+`
+const UploadBody = styled.body
+`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 86vh;
+  overflow: hidden;
+`
 
 const UploadContainer = styled.div`
   padding-top: 20px;
-  display: flex;
-  justify-content: center;
 `
 
 const UploadFile = styled.input

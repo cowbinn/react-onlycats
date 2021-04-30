@@ -62,7 +62,7 @@ function Home() {
             { loading ? (<div>Loading...</div>) : 
                 (
                     <React.Fragment>
-                        <Carousel infiniteloop autoPlay>
+                        <Carousel infiniteloop autoPlay renderIndicator = {false}>
                             {usersList}
                         </Carousel>
                     </React.Fragment>
@@ -92,4 +92,8 @@ const UsernameDisplayed = styled.h2
     margin-bottom: 1rem;
     border-radius: 25px;
     background: white;
+    &:hover {
+        border-color: black;
+        transition: 0.3s;
+    }
 `

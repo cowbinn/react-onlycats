@@ -7,7 +7,7 @@ import Profile from './components/Profile.js'
 import Cart from './components/Paypal.js'
 import Home from './components/Home.js'
 import Contactus from './components/ContactUs.js'
-import Aboutus from './components/AboutUs.js'
+import AboutUs from './components/AboutUs.js'
 import SingleView from './components/SingleView.js'
 import OrderHistory from './components/OrderHistory.js'
 import SignUp from './components/SignUp.js'
@@ -40,7 +40,7 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/cart" component={Cart} />
           <PrivateRoute path="/contactus" component={Contactus} />
-          <PrivateRoute path="/aboutus" component={Aboutus} />
+          <PrivateRoute path="/aboutus" component={AboutUs} />
           <PrivateRoute path="/singleview" component={SingleView} />
           <PrivateRoute path="/orderhistory" component={OrderHistory} />
           <Route path="/signup" component={SignUp} />

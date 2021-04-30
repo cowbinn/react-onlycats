@@ -3,6 +3,8 @@
 * {
   font-family: Ubuntu;
   margin: 0;
-  
 }
 
+.App {
+  background: linear-gradient(#FFFFFF 80%, #d9d9d9);
+}

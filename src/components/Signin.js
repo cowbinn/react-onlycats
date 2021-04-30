@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { auth } from "./config";
 
 import styled from 'styled-components';
@@ -80,6 +80,7 @@ const SignInBody = styled.body
   overflow: hidden;
 `
 
+// https://www.w3schools.com/css/css3_shadows_box.asp
 const SignInCenter = styled.div
 `
   position: absolute;
@@ -87,6 +88,8 @@ const SignInCenter = styled.div
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
   background: white;
   border-radius: 20px;
 `

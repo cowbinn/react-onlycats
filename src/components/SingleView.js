@@ -103,35 +103,44 @@ function SingleView() {
     };
 
     return(
-        <SingleViewContainer>
-        {fin && imgFin ? (
-            <React.Fragment>
-                <Content>
-                    <UsernameAndFollow>
-                        <h1>{user.username}</h1>
-                        <Link to={`/cart/${id}`}>
-                            <FollowButton disabled={isSubbed}>Follow</FollowButton>
-                        </Link>
-                    </UsernameAndFollow>
-                    
-                    <DescriptionH2>Description: {user.description}</DescriptionH2>
-                    <Picture>
-                        <img src = {url} alt = "Profile" />
-                    </Picture>
-                    {console.log("using img list as intended")}
-                    <hr style = {{margin: 12}}/>
-                    <ImgListContainer>
-                        {imageList()}
-                    </ImgListContainer>
-                </Content>
-            </React.Fragment>
-        ) : (null) }
-        </SingleViewContainer>
-
+        <SingleBody>
+            <SingleViewContainer>
+            {fin && imgFin ? (
+                <React.Fragment>
+                    <Content>
+                        <UsernameAndFollow>
+                            <h1>{user.username}</h1>
+                            <Link to={`/cart/${id}`}>
+                                <FollowButton disabled={isSubbed}>Follow</FollowButton>
+                            </Link>
+                        </UsernameAndFollow>
+                        
+                        <DescriptionH2>Description: {user.description}</DescriptionH2>
+                        <Picture>
+                            <img src = {url} alt = "Profile" />
+                        </Picture>
+                        {console.log("using img list as intended")}
+                        <hr style = {{margin: 12}}/>
+                        <ImgListContainer>
+                            {imageList()}
+                        </ImgListContainer>
+                    </Content>
+                </React.Fragment>
+            ) : (null) }
+            </SingleViewContainer>
+        </SingleBody>
     );
 }
 
 export default SingleView
+
+const SingleBody = styled.body
+`
+  margin: 0;
+  padding: 0;
+  height: 86vh;
+  overflow: hidden;
+`
 
 const SingleViewContainer = styled.div`
     display: flex;
@@ -147,7 +156,7 @@ const ImgListPicture = styled.div `
     img {
         border-radius: 25px;
         border: 2px solid #7F85F4;
-        width: 200px;
+        width: auto;
         height: 120px;
     }
 `
@@ -197,6 +206,7 @@ const Picture = styled.div`
     img {
         border-radius: 25px;
         border: 2px solid #7F85F4;
-        width: 500px
+        height: 340px;
+        width: auto;
     }
 `

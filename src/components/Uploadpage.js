@@ -47,7 +47,7 @@ const Uploadpage = () =>{
             <UploadFile type="file" onChange={handleChange} />
             <UploadButton disabled={!file}>Upload</UploadButton>
           </form>
-          <Picture>
+          <Picture disabled={!file}>
             <img src={url} alt="" />
           </Picture>
         </UploadContainer>
